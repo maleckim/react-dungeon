@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CharStatus from '../UI/CharStatus'
 import ActionBar from '../UI/ActionBar'
 import ShowMap from '../UI/ShowMap'
 
-export default function OpenWorld(props){
+export default class OpenWorld extends Component {
 
 
-  return(
-    <>
-    <ShowMap />
-    <CharStatus health={props.char.Health} strength={props.char.Strength} mana={props.char.Mana}/>
-    <ActionBar />
-    </>
-  )
+
+  render() {
+    return (
+      <>
+        <ShowMap />
+        <CharStatus health={this.props.char.Health} strength={this.props.char.Strength} mana={this.props.char.Mana} />
+        <ActionBar />
+      </>
+    )
+  }
 }
