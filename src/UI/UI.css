@@ -1,0 +1,27 @@
+.charStatus {
+  border:solid 1px black;
+  width:15%;
+  height:80px;
+}
+
+.actionBar {
+  position: absolute;
+  margin-left:auto;
+  margin-right:auto;
+  bottom:10%;
+  left:20%;
+  border:solid 1px black;
+  width:55%;
+  height:150px;
+}
+
+.backGround {
+  border:solid 1px black;
+  height:45%;
+  width:45%;
+  position: absolute;
+  top:25%;
+  left:25%;
+  background-image: url('../MapDrawing/corridor1.png');
+  background-size: cover;
+}
