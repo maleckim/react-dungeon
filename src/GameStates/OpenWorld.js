@@ -4,6 +4,15 @@ import ActionBar from '../UI/ActionBar'
 import ShowMap from '../UI/ShowMap'
 
 export default class OpenWorld extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      location: {
+        x: 0,
+        y: 0
+      }
+    }
+  }
 
 
 

@@ -25,3 +25,8 @@
   background-image: url('../MapDrawing/corridor1.png');
   background-size: cover;
 }
+
+.rightSide button {
+  margin-left:auto;
+  text-align: right;
+}
