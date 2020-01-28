@@ -82,15 +82,17 @@ export default class App extends Component {
 
   postInventory = (data) => {
 
+    console.log(data);
+
     fetch('http://localhost:1234/inventory', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify({ data })
+      body: JSON.stringify( {data} )
     })
-      .then(res => res.json())
-      .then(resJSON => console.log(resJSON))
+    .then(res => console.log(res))
+      
   }
 
   dialogue = (val, callback) => {

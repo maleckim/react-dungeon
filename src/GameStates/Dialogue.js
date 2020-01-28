@@ -76,14 +76,14 @@ export default class Dialogue extends React.Component {
     this.state.choices.map((a, b) => a === this.state.playerResponse ? option = b : 0)
     this.state.responses.map((a, b) => b === option ? response = a : 0)
 
-    
 
-    if(option !== 1){
-    this.setState({ npcResponse: response })
-    }else{
+
+    if (option !== 1) {
+      this.setState({ npcResponse: response })
+    } else {
       this.props.history.push('/fight')
     }
-      
+
   }
 
 
@@ -123,11 +123,15 @@ export default class Dialogue extends React.Component {
 
         return (
           <>
-          <h1>{this.state.npcResponse}</h1>
-          <h3>you obtained...{this.state.specialitem}</h3>
-          <p>It was sent to you inventory</p>
+            <h1>{this.state.npcResponse}</h1>
+            <h3>you obtained...{this.state.specialitem}</h3>
+            <p>It was sent to you inventory</p>
 
-          <button onClick={() => this.props.history.push('/openWorld')}>continue</button>
+            <button onClick={(e) => {
+              this.props.inventory(this.state.specialitem)
+              this.props.history.push('/openWorld')
+
+            }}>continue</button>
           </>
         )
 
