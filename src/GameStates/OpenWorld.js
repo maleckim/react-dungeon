@@ -72,6 +72,13 @@ export default class OpenWorld extends Component {
       <ActionBar updateXY={this.updateXY} return={this.routerFunc} status = {1} />
       </>
       )
+    }else{
+      return(
+        <>
+        <ShowMap pos = {this.state.location} background = {1}/>
+        <ActionBar updateXY={this.updateXY} return={this.routerFunc} status = {1} />
+        </>
+        )
     }
 
   }

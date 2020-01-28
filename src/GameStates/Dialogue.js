@@ -6,7 +6,7 @@ export default class Dialogue extends React.Component {
 
     this.state = {
       who: this.props.who,
-      choices: '',
+      choices: [],
       responses: [],
       count: 0
     }
@@ -23,14 +23,23 @@ export default class Dialogue extends React.Component {
     fetch(`http://localhost:1234/response?who=${query}`)
       .then(res => res.json())
       .then(resJSON => {
-        console.log(resJSON);
-        let {Choices, Responses} = resJSON;
-        this.setState({
-        Choices: [Choices],
-        responses: [...Responses]
+        
+        let { Choices, Responses } = resJSON;
 
-      })}
-      )
+        if (Choices) {
+          this.setState({
+
+            choices: [...Choices],
+            responses: [...Responses]
+          })
+        } else {
+
+          this.setState({
+            responses: [...Responses]
+          })
+        }
+      }
+    )
   }
 
 
@@ -57,9 +66,12 @@ export default class Dialogue extends React.Component {
     })
   }
 
+ 
+
 
   render() {
-    console.log(this.state);
+    
+
     if (this.state.who === 'Master') {
       return (
         <>
@@ -68,13 +80,22 @@ export default class Dialogue extends React.Component {
           <button onClick={() => this.nextDialogue()}>Continue</button>
         </>
       )
-    }else{
-      return(
-        <>
-        <h1>{this.state.who}...</h1>
-        {this.genDialogue()}
-        <button onClick={() => this.nextDialogue()}>Continue</button>
+    } else{
+      
+      console.log(this.state.choices[0])
+      let choices = this.state.choices.map(a => <option>{a}</option>)
+      return (
 
+        <>
+          
+          <h1>{this.state.who}...</h1>
+          <p>just trying to find myself at the end of this ciggarette</p>
+          <select>
+            <option>{null}</option>
+            {choices}
+          </select>
+          
+          
         </>
       )
     }
