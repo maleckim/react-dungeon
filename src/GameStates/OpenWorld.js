@@ -59,7 +59,7 @@ export default class OpenWorld extends Component {
       this.setState({
         location: {
           x: x,
-          y:y
+          y: y
         }
       })
     }
