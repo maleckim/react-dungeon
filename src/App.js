@@ -7,6 +7,7 @@ import Dialogue from './GameStates/Dialogue';
 import OpenWorld from './GameStates/OpenWorld';
 import Fight from './GameStates/Fight'
 import Bag from './UI/Bag'
+import GameOver from './GameStates/GameOver'
 
 
 
@@ -20,6 +21,7 @@ export default class App extends Component {
       who: 'Master',
       bagContents: [],
       currentDescription: '',
+      disabled: null,
     }
 
   }
@@ -68,7 +70,7 @@ export default class App extends Component {
     fetch(`http://localhost:1234/info?item=${item}`)
       .then(res => res.json())
       .then(resJSON => {
-        console.log(resJSON)
+        
         this.setState({
           currentDescription: resJSON
         })
@@ -81,9 +83,15 @@ export default class App extends Component {
   dialogue = (val,callback) => {
 
     this.setState({
-      who: val
+      who: val,
+      disabled: true
     })
     return callback();
+  }
+
+  gameOver = () => {
+
+    this.props.history.push('/')
   }
 
 
@@ -95,7 +103,9 @@ export default class App extends Component {
     console.log(this.state);
     return (
       <StatusContext.Provider value={{
-        dialogue: this.dialogue
+        dialogue: this.dialogue,
+        gameOver: this.gameOver,
+        disabled: this.state.disabled
       }}>
 
         <main>
@@ -104,7 +114,8 @@ export default class App extends Component {
           <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} />} />
           <Route path="/openWorld" render={(routeProps) => <OpenWorld {...routeProps} char={this.state.chars[0]} />} />
           <Route path="/openWorld/inventory" render={(routeProps) => <Bag {...routeProps} items={this.state.bagContents} checkInfo={this.displayItemInfo} info={this.state.currentDescription} />} />
-          <Route path="/fight" component={Fight} />
+          <Route path="/fight" render={(routeProps) => <Fight {...routeProps} enemy={this.state.who} />} />
+          <Route path="/GameOver" component={GameOver} />
         </main>
         
       

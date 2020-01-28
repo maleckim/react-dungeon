@@ -10,7 +10,8 @@ export default class OpenWorld extends Component {
       location: {
         x: 0,
         y: 0
-      }
+      },
+      disabled:null,
     }
   }
 
@@ -59,9 +60,14 @@ export default class OpenWorld extends Component {
     }
   }
 
-  routerFunc = () => {
+  routerFunc = (val) => {
+    
     this.props.history.push('/dialogue')
+  }
 
+  gameOver = (val) => {
+    this.props.history.push('/Gameover')
+    alert(`${val} should not be sniffed`)
   }
 
   specificMap = () => {
@@ -69,7 +75,7 @@ export default class OpenWorld extends Component {
       return(
       <>
       <ShowMap pos = {this.state.location} background = {1}/>
-      <ActionBar updateXY={this.updateXY} return={this.routerFunc} status = {1} />
+      <ActionBar updateXY={this.updateXY} return={this.routerFunc} over={this.gameOver} status = {1} disabled={this.state.disabled} />
       </>
       )
     }else{
@@ -86,12 +92,11 @@ export default class OpenWorld extends Component {
 
 
   render() {
-    console.log(this.props);
+    console.log(this.state);
     return (
       <>
-        {this.specificMap()}
         <CharStatus health={this.props.char.Health} strength={this.props.char.Strength} mana={this.props.char.Mana} />
-
+        {this.specificMap()}
       </>
     )
   }

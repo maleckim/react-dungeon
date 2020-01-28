@@ -11,7 +11,7 @@ export default function ShowMap(props) {
       ['X', 'X', 'X']
     ]
 
-    let x = props.pos.x 
+    let x = props.pos.x + 1
     let y = props.pos.y + map.length - 1
     map[y][x] = '0'
 
@@ -23,11 +23,11 @@ export default function ShowMap(props) {
   if (props.background === 1) {
     return (
       <>
+      <div className='mini'>
+        <div className='map'>{map}</div>
+      </div>
       <div className='backGround'>
         <img src={corridor1} />
-      </div>
-      <div className='mini'>
-        {map}
       </div>
       </>
     )

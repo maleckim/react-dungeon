@@ -1,6 +1,7 @@
 import React from 'react';
 import StatusContext from '../GameContext/StatusContext'
 
+
 export default function Actions(props) {
 
 
@@ -11,14 +12,22 @@ export default function Actions(props) {
       <StatusContext.Consumer>
         {value => (
           <>
-            <button value='Stranger' onClick={e => value.dialogue(e.target.value, props.return)}>Talk to Strange Man</button>
-            <button>Sniff Toxic Barrel</button>
+            {console.log(props.disabled)}
+            <button value='Stranger' disabled={value.disabled} onClick={e => value.dialogue(e.target.value, props.return)}>Talk to Strange Man</button>
+            <button value='toxic waste' onClick={(e) => props.over(e.target.value)}>Sniff Toxic Barrel</button>
           </>
         )
         }
       </StatusContext.Consumer>
 
 
+    )
+  }else if(props.status === 0){
+    return(
+    <>
+      <button>Attack</button>
+      <button>Run Away</button>
+    </>
     )
   }
 }
