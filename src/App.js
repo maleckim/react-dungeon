@@ -66,11 +66,12 @@ export default class App extends Component {
   }
 
   displayItemInfo = (item) => {
-
+    console.log(item)
     fetch(`http://localhost:1234/info?item=${item}`)
       .then(res => res.json())
       .then(resJSON => {
-
+        
+        
         this.setState({
           currentDescription: resJSON
         })
@@ -91,7 +92,8 @@ export default class App extends Component {
       },
       body: JSON.stringify( {data} )
     })
-    .then(res => console.log(res))
+    .then(res => res.json())
+    .then(resJSON => this.setState({bagContents: [...this.state.bagContents, resJSON] }))
       
   }
 
@@ -120,7 +122,8 @@ export default class App extends Component {
       <StatusContext.Provider value={{
         dialogue: this.dialogue,
         gameOver: this.gameOver,
-        disabled: this.state.disabled
+        disabled: this.state.disabled,
+        inventory: this.state.bagContents
       }}>
 
         <main>
