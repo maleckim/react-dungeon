@@ -6,6 +6,7 @@ export default class Dialogue extends React.Component {
 
     this.state = {
       who: this.props.who,
+      choices: '',
       responses: [],
       count: 0
     }
@@ -28,20 +29,20 @@ export default class Dialogue extends React.Component {
 
 
   genDialogue = () => {
-    if(this.state.responses){
-    let current = this.state.count;
-    let saying = this.state.responses[current];
-    
-    return(<p>{saying}</p>)
-    }else{
-      return(<p>not populated!</p>)
+    if (this.state.responses) {
+      let current = this.state.count;
+      let saying = this.state.responses[current];
+
+      return (<p>{saying}</p>)
+    } else {
+      return (<p>not populated!</p>)
     }
   }
 
   nextDialogue = () => {
-    
+
     let { count } = this.state
-    if(count === this.state.responses.length - 1){
+    if (count === this.state.responses.length - 1) {
       this.props.history.push('/openWorld');
     }
     count = count + 1;
@@ -49,16 +50,27 @@ export default class Dialogue extends React.Component {
       count: count
     })
   }
-  
+
 
   render() {
-    return (
-      <>
-      <h1>{this.state.who}...</h1>
-      {this.genDialogue()}
-      <button onClick={() => this.nextDialogue()}>Continue</button>
-      </>
-    )
+    if (this.state.who === 'Master') {
+      return (
+        <>
+          <h1>{this.state.who}...</h1>
+          {this.genDialogue()}
+          <button onClick={() => this.nextDialogue()}>Continue</button>
+        </>
+      )
+    }else{
+      return(
+        <>
+        <h1>{this.state.who}...</h1>
+        {this.genDialogue()}
+        <button onClick={() => this.nextDialogue()}>Continue</button>
+
+        </>
+      )
+    }
   }
 
 
