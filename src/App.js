@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import StatusContext from './GameContext/StatusContext'
 import Intro from './GameStates/Intro';
 import CharSelect from './GameStates/CharSelect';
 import Dialogue from './GameStates/Dialogue';
@@ -67,14 +68,24 @@ export default class App extends Component {
       .then(res => res.json())
       .then(resJSON => {
         console.log(resJSON)
-        this.setState({ 
-        currentDescription: resJSON
-      })
+        this.setState({
+          currentDescription: resJSON
+        })
 
-     
-    });
+
+      });
 
   }
+
+  dialogue = (val,callback) => {
+
+    this.setState({
+      who: val
+    })
+    return callback();
+  }
+
+
 
 
 
@@ -82,14 +93,20 @@ export default class App extends Component {
   render() {
     console.log(this.state);
     return (
+      <StatusContext.Provider value={{
+        dialogue: this.dialogue
+      }}>
 
-      <main>
-        <Route exact path="/" component={Intro} />
-        <Route exact path="/charSelect" render={(routeProps) => <CharSelect {...routeProps} chars={this.state.chars} pickChar={this.postChar} finish={this.updateChar} />} />
-        <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} />} />
-        <Route path="/openWorld" render={(routeProps) => <OpenWorld {...routeProps} char={this.state.chars[0]} />} />
-        <Route path="/openWorld/inventory" render={(routeProps) => <Bag {...routeProps} items={this.state.bagContents} checkInfo={this.displayItemInfo} info={this.state.currentDescription} />} />
-      </main>
+        <main>
+          <Route exact path="/" component={Intro} />
+          <Route exact path="/charSelect" render={(routeProps) => <CharSelect {...routeProps} chars={this.state.chars} pickChar={this.postChar} finish={this.updateChar} />} />
+          <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} />} />
+          <Route path="/openWorld" render={(routeProps) => <OpenWorld {...routeProps} char={this.state.chars[0]} />} />
+          <Route path="/openWorld/inventory" render={(routeProps) => <Bag {...routeProps} items={this.state.bagContents} checkInfo={this.displayItemInfo} info={this.state.currentDescription} />} />
+        </main>
+        
+      
+  </StatusContext.Provider>
     )
   }
 

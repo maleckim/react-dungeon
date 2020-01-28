@@ -1,5 +1,7 @@
 import React from 'react';
 
-const CharStatusContext = React.createContext({
+const StatusContext = React.createContext({
   
 })
+
+export default StatusContext

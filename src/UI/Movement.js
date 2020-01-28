@@ -6,6 +6,7 @@ export default function Movement(props) {
 
 
   return(
-    <button>up</button>
+    <>
+    </>
   )
 }

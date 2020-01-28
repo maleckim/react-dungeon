@@ -1,13 +1,15 @@
 import React from 'react';
+import corridor1 from '../MapDrawing/corridor1.png'
 
-export default function ShowMap(props){
+export default function ShowMap(props) {
 
 
-let background = props.background
-console.log(typeof background)
-  return(
-    <div className='backGround' style={{backgroundImage:`url(${background})`}}>
+  if (props.background === 1) {
+    return (
+      <div className='backGround'>
+        <img src={corridor1} />
+      </div>
+    )
+  }
 
-    </div>
-  )
 }
