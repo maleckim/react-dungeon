@@ -73,7 +73,7 @@ export default class OpenWorld extends Component {
 
   gameOver = (val) => {
     this.props.history.push('/Gameover')
-    alert(`${val} should not be sniffed`)
+    alert(`${val} should not be sniffed, now you just smoke ciggies with stranger all day. That's right you live your days muttering "yea", "i feel you", "mhmm" at a stick figure nihilist...`)
   }
 
   specificMap = () => {

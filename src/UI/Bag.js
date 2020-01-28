@@ -18,6 +18,7 @@ export default function Bag(props) {
             {value.inventory.map(a => <p>{a} <button value={`${a}`} onClick={(e) => props.checkInfo(e.target.value)}>info</button></p>)}
             {props.info}
           </div>
+          
           </>
         )
         }

@@ -108,7 +108,9 @@ export default class Dialogue extends React.Component {
           <>
 
             <h1>{this.state.who}...</h1>
-            <p>just trying to find myself at the end of this ciggarette</p>
+            <p>You know... I used to be like you. An adventurer that is. Then one day I realized it didnt matter how big the sand castle I made was, eventually it would be washed away.</p>
+            <p>Now im not saying I'm some life hating nhilist, but whats the point of stressing out when in 100 years not a single person will remember who I am or what I did. No point man</p>
+            <p>So now I hangout by this weird vase and smoke ciggies, Yeah... i used to be like you.</p>
             <form onSubmit={e => this.dynamicResponse(e)}>
               <select onChange={e => this.setState({ playerResponse: e.target.value })}>
                 <option>{null}</option>
