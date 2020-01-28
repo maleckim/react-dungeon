@@ -26,11 +26,11 @@ export default class Dialogue extends React.Component {
       .then(res => res.json())
       .then(resJSON => {
 
-        let { Choices, Responses } = resJSON;
+        let { Choices, Responses, Unique } = resJSON;
 
         if (Choices) {
           this.setState({
-
+            specialitem: Unique,
             choices: [...Choices],
             responses: [...Responses]
           })
@@ -91,8 +91,6 @@ export default class Dialogue extends React.Component {
   render() {
 
 
-
-
     if (this.state.who === 'Master') {
       return (
         <>
@@ -126,6 +124,9 @@ export default class Dialogue extends React.Component {
         return (
           <>
           <h1>{this.state.npcResponse}</h1>
+          <h3>you obtained...{this.state.specialitem}</h3>
+          <p>It was sent to you inventory</p>
+
           <button onClick={() => this.props.history.push('/openWorld')}>continue</button>
           </>
         )

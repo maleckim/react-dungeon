@@ -66,11 +66,11 @@ export default class App extends Component {
   }
 
   displayItemInfo = (item) => {
-    console.log(item)
+
     fetch(`http://localhost:1234/info?item=${item}`)
       .then(res => res.json())
       .then(resJSON => {
-        
+
         this.setState({
           currentDescription: resJSON
         })
@@ -80,7 +80,20 @@ export default class App extends Component {
 
   }
 
-  dialogue = (val,callback) => {
+  postInventory = (data) => {
+
+    fetch('http://localhost:1234/inventory', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ data })
+    })
+      .then(res => res.json())
+      .then(resJSON => console.log(resJSON))
+  }
+
+  dialogue = (val, callback) => {
 
     this.setState({
       who: val,
@@ -111,15 +124,15 @@ export default class App extends Component {
         <main>
           <Route exact path="/" component={Intro} />
           <Route exact path="/charSelect" render={(routeProps) => <CharSelect {...routeProps} chars={this.state.chars} pickChar={this.postChar} finish={this.updateChar} />} />
-          <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} />} />
+          <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} inventory={this.postInventory} />} />
           <Route path="/openWorld" render={(routeProps) => <OpenWorld {...routeProps} char={this.state.chars[0]} />} />
           <Route path="/openWorld/inventory" render={(routeProps) => <Bag {...routeProps} items={this.state.bagContents} checkInfo={this.displayItemInfo} info={this.state.currentDescription} />} />
           <Route path="/fight" render={(routeProps) => <Fight {...routeProps} enemy={this.state.who} />} />
           <Route path="/GameOver" component={GameOver} />
         </main>
-        
-      
-  </StatusContext.Provider>
+
+
+      </StatusContext.Provider>
     )
   }
 
