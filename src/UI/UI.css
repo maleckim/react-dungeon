@@ -16,6 +16,7 @@
 }
 
 .backGround {
+  display: flex;
   text-align: center;
   border:solid 1px black;
   height:45%;
@@ -37,8 +38,5 @@ img {
 }
 
 .mini {
-  display:flex;
-  flex-flow:wrap;
-  width:50px;
-  height:50px;
+  line-height: 1px;
 }
