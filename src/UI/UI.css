@@ -65,3 +65,24 @@ img {
   margin-right:auto;
   width: 50%;
 }
+
+.introContainer {
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+}
+
+.start {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 12px;
+}
+
+.start:hover{
+  font-size: larger;
+}
