@@ -22,9 +22,15 @@ export default class Dialogue extends React.Component {
   getRespones(query) {
     fetch(`http://localhost:1234/response?who=${query}`)
       .then(res => res.json())
-      .then(resJSON => this.setState({
-        responses: [...resJSON]
-      }))
+      .then(resJSON => {
+        console.log(resJSON);
+        let {Choices, Responses} = resJSON;
+        this.setState({
+        Choices: [Choices],
+        responses: [...Responses]
+
+      })}
+      )
   }
 
 
@@ -53,6 +59,7 @@ export default class Dialogue extends React.Component {
 
 
   render() {
+    console.log(this.state);
     if (this.state.who === 'Master') {
       return (
         <>
