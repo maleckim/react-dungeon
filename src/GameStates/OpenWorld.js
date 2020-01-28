@@ -14,14 +14,21 @@ export default class OpenWorld extends Component {
     }
   }
 
-  
+  specificMap = () => {
+    if(this.state.location.x === 0 && this.state.location.y === 0){
+      return(
+      <ShowMap background = {'src\/MapDrawing\/corridor1.png'} />
+      )
+    }
+
+  }
 
 
 
   render() {
     return (
       <>
-        <ShowMap />
+        {this.specificMap()}
         <CharStatus health={this.props.char.Health} strength={this.props.char.Strength} mana={this.props.char.Mana} />
         <ActionBar />
       </>
