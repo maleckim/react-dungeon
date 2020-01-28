@@ -11,7 +11,7 @@ export default function ActionBar(props){
       <Link to='/openWorld/inventory'>bag</Link>
       <aside className='rightSide'>
       
-      <Movement />
+      <Movement updateXY={props.updateXY}/>
       </aside>
     </div>
   )
