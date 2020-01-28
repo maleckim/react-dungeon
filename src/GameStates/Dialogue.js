@@ -68,7 +68,7 @@ export default class Dialogue extends React.Component {
     })
   }
 
-  dynamicResponse = (e, callback) => {
+  dynamicResponse = (e) => {
     e.preventDefault();
     let option;
     let response;
@@ -111,7 +111,7 @@ export default class Dialogue extends React.Component {
 
             <h1>{this.state.who}...</h1>
             <p>just trying to find myself at the end of this ciggarette</p>
-            <form onSubmit={e => this.dynamicResponse(e, this.showResponse)}>
+            <form onSubmit={e => this.dynamicResponse(e)}>
               <select onChange={e => this.setState({ playerResponse: e.target.value })}>
                 <option>{null}</option>
                 {choices}

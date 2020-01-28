@@ -18,7 +18,7 @@ export default class OpenWorld extends Component {
     let {x, y} = this.state.location
     console.log(this.state.location)
     if(pos==='up'){
-      y = y+1;
+      y = y - 1;
       this.setState({
         location: {
           x: x,
@@ -26,7 +26,7 @@ export default class OpenWorld extends Component {
         }
       })
     }else if(pos==='down'){
-      y=y-1
+      y = y + 1
       this.setState({
         location: {
           x: x,

@@ -12,7 +12,7 @@ export default function ShowMap(props) {
     ]
 
     let x = props.pos.x 
-    let y = props.pos.y
+    let y = props.pos.y + map.length - 1
     map[y][x] = '0'
 
     
