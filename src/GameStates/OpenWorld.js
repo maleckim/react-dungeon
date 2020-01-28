@@ -15,35 +15,47 @@ export default class OpenWorld extends Component {
     }
   }
 
+  static defaultProps ={
+    char: {
+    Health: 10,
+    Mana: 10,
+    Strength: 10
+    }
+  }
+
   updateXY =(pos)=>{
     let {x, y} = this.state.location
-    console.log(this.state.location)
-    if(pos==='up'){
-      y = y - 1;
+    
+    if( pos==='up' && y > -2 ){
+      y--
+
       this.setState({
         location: {
           x: x,
           y: y
         }
       })
-    }else if(pos==='down'){
-      y = y + 1
+    }else if(pos==='down' && y < 0){
+      y++
+
       this.setState({
         location: {
           x: x,
           y: y
         }
       })
-    }else if(pos==='right'){
-      x=x+1;
+    }else if(pos==='right' && x < 1){
+      x++
+      
       this.setState({
         location: {
           x: x,
           y: y
         }
       })
-    }else if(pos==='left'){
-      x=x-1;
+    }else if(pos==='left' && x > -1){
+      x--
+
       this.setState({
         location: {
           x: x,
@@ -52,13 +64,7 @@ export default class OpenWorld extends Component {
       })
     }
 }
-  static defaultProps ={
-    char: {
-    Health: 10,
-    Mana: 10,
-    Strength: 10
-    }
-  }
+
 
   routerFunc = (val) => {
     
