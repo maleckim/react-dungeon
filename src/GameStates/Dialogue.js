@@ -8,6 +8,7 @@ export default class Dialogue extends React.Component {
       who: this.props.who,
       choices: [],
       responses: [],
+      playerResponse:'',
       count: 0
     }
 
@@ -23,7 +24,7 @@ export default class Dialogue extends React.Component {
     fetch(`http://localhost:1234/response?who=${query}`)
       .then(res => res.json())
       .then(resJSON => {
-        
+
         let { Choices, Responses } = resJSON;
 
         if (Choices) {
@@ -39,7 +40,7 @@ export default class Dialogue extends React.Component {
           })
         }
       }
-    )
+      )
   }
 
 
@@ -66,11 +67,11 @@ export default class Dialogue extends React.Component {
     })
   }
 
- 
+
 
 
   render() {
-    
+
 
     if (this.state.who === 'Master') {
       return (
@@ -80,22 +81,23 @@ export default class Dialogue extends React.Component {
           <button onClick={() => this.nextDialogue()}>Continue</button>
         </>
       )
-    } else{
-      
-      console.log(this.state.choices[0])
-      let choices = this.state.choices.map(a => <option>{a}</option>)
+    } else {
+
+      console.log(this.state)
+      let choices = this.state.choices.map(a => <option value={a}>{a}</option>)
       return (
 
         <>
-          
+
           <h1>{this.state.who}...</h1>
           <p>just trying to find myself at the end of this ciggarette</p>
-          <select>
-            <option>{null}</option>
-            {choices}
-          </select>
-          
-          
+          <form>
+            <select onChange={e => this.setState({playerResponse: e.target.value})}>
+              <option>{null}</option>
+              {choices}
+            </select>
+          </form>
+
         </>
       )
     }

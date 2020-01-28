@@ -14,14 +14,16 @@ export default function ShowMap(props) {
     ]
 
   // map[y + map.length - 1][x - map[0].length - 1] = '0'
-  map[0][0] = '0'
+  map[y][x] = '0'
 
 
   if (props.background === 1) {
     return (
       <div className='backGround'>
         <img src={corridor1} />
+        <div className='mini'>
         {map}
+        </div>
       </div>
     )
   }
