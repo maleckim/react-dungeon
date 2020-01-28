@@ -8,7 +8,8 @@ export default class Dialogue extends React.Component {
       who: this.props.who,
       choices: [],
       responses: [],
-      playerResponse:'',
+      playerResponse: '',
+      npcResponse: '',
       count: 0
     }
 
@@ -67,10 +68,34 @@ export default class Dialogue extends React.Component {
     })
   }
 
+  dynamicResponse = (e, callback) => {
+    e.preventDefault();
+    let option;
+    let response;
+
+    this.state.choices.map((a, b) => a === this.state.playerResponse ? option = b : 0)
+    this.state.responses.map((a, b) => b === option ? response = a : 0)
+
+    
+
+    if(option !== 1){
+    this.setState({ npcResponse: response })
+    }else{
+      this.props.history.push('/fight')
+    }
+      
+  }
+
+
+
+
+
 
 
 
   render() {
+
+
 
 
     if (this.state.who === 'Master') {
@@ -83,23 +108,34 @@ export default class Dialogue extends React.Component {
       )
     } else {
 
-      console.log(this.state)
       let choices = this.state.choices.map(a => <option value={a}>{a}</option>)
-      return (
 
-        <>
+      if (!this.state.npcResponse) {
+        return (
+          <>
 
-          <h1>{this.state.who}...</h1>
-          <p>just trying to find myself at the end of this ciggarette</p>
-          <form>
-            <select onChange={e => this.setState({playerResponse: e.target.value})}>
-              <option>{null}</option>
-              {choices}
-            </select>
-          </form>
+            <h1>{this.state.who}...</h1>
+            <p>just trying to find myself at the end of this ciggarette</p>
+            <form onSubmit={e => this.dynamicResponse(e, this.showResponse)}>
+              <select onChange={e => this.setState({ playerResponse: e.target.value })}>
+                <option>{null}</option>
+                {choices}
+              </select>
+              <input type='submit' />
+            </form>
 
-        </>
-      )
+          </>
+        )
+      } else {
+
+        return (
+          <>
+          <h1>{this.state.npcResponse}</h1>
+          <button onClick={() => this.props.history.push('/openWorld')}>continue</button>
+          </>
+        )
+
+      }
     }
   }
 

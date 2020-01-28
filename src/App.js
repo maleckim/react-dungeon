@@ -5,6 +5,7 @@ import Intro from './GameStates/Intro';
 import CharSelect from './GameStates/CharSelect';
 import Dialogue from './GameStates/Dialogue';
 import OpenWorld from './GameStates/OpenWorld';
+import Fight from './GameStates/Fight'
 import Bag from './UI/Bag'
 
 
@@ -103,6 +104,7 @@ export default class App extends Component {
           <Route path="/dialogue" render={(routeProps) => <Dialogue {...routeProps} who={this.state.who} />} />
           <Route path="/openWorld" render={(routeProps) => <OpenWorld {...routeProps} char={this.state.chars[0]} />} />
           <Route path="/openWorld/inventory" render={(routeProps) => <Bag {...routeProps} items={this.state.bagContents} checkInfo={this.displayItemInfo} info={this.state.currentDescription} />} />
+          <Route path="/fight" component={Fight} />
         </main>
         
       
