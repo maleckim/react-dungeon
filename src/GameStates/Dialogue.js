@@ -1,4 +1,5 @@
 import React from 'react';
+import dung from '../MapDrawing/dungmaster.png'
 
 export default class Dialogue extends React.Component {
   constructor(props) {
@@ -93,11 +94,12 @@ export default class Dialogue extends React.Component {
 
     if (this.state.who === 'Master') {
       return (
-        <>
+        <div className='masterIntro'>
           <h1>{this.state.who}...</h1>
           {this.genDialogue()}
-          <button onClick={() => this.nextDialogue()}>Continue</button>
-        </>
+          <img className='dungmast' src={dung}/>
+          <button className='dung' onClick={() => this.nextDialogue()}>Continue</button>
+        </div>
       )
     } else {
 
